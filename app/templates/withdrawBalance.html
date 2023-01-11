@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class= "search" action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.withdraw.label }}<br/>
+    {{ form.withdraw(size=32) }}<br/>
+    {% for error in form.withdraw.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {% if form.overdrawn == 1%}
+          You cannot withdraw more than your account balance!
+    {% endif %}
+    {% if form.neg == 1%}
+          You cannot withdraw a negative amount!
+    {% endif %}
+  </p>
+  <p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </p>
+  {{ form.submit(class_="btn btn-black") }}
+  <br><br>
+
+
+
+{% endblock %}

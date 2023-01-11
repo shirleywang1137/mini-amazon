@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form class= "search" action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+  <p>
+    <div style = "background-color:lightblue;">
+      {{ form.search_key.label }}<br/>
+    </div>
+
+    <div style = "background-color:lightblue;">
+      {{ form.search_key(size=32) }}
+    </div>
+
+    <div style = "background-color:lightblue;">
+      {{ form.myField1.label }}<br/>
+    </div>
+
+    <div style = "background-color:lightblue;">
+      {{form.myField1(size=10)}}
+    </div>
+    
+    
+    {% for error in form.search_key.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </p>
+  <div style = "position:absolute; left:800px; top:250px; background-color:black;">
+    {{ form.submit(class_="btn btn-black") }}
+  </div>
+  
+  <br><br>
+<h2>Your recent purchases:</h2>
+<table class='table table-hover table-bordered container'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Order ID</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">Address</th>
+      <th scope="col">Item Fulfilled</th>
+      <th scope="col">Order Completed</th>
+      <th scope="col">Fulfillment Time</th>
+      <th scope="col">Order Again</th>
+      <th scope="col">Review Product</th> 
+
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for purchase in purchase_history%}
+      <tr>
+        <th scope="row">{{purchase.superorder_id}}</th>
+        <td>{{purchase.product_name}}</td>
+        <td>{{purchase.quantity}}</td>
+        <td>{{purchase.price}}</td>
+        <td>{{purchase.price*purchase.quantity}}</td>
+        <td>{{purchase.address}}</td>
+        <td>{{ purchase.fulfillment }}</td>
+        <td>{{purchase.order_fulfilled}}</td>
+        <td>{% if purchase.fulfillment %}
+          {{ purchase.fulfillment_time}}
+        {% endif %}</td>
+        <td><a href="{{ url_for('addcart.addcart', pid=purchase.product_id) }}" type="button" class="btn btn-light"> Add To Cart </a></td>
+        <td><a href="{{ url_for('reviewHome.addProductReview', pid=purchase.product_id) }}" class="btn btn-light"> Add Review </a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

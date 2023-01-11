@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Seller's Page</h2>
+  <h3>Check Customer Orders:</h3>
+    <a id="see-purchases-button" href="{{ url_for('purchase_details.purchase', sid = current_user.id)}}" type="button" class="btn btn-dark">Check Orders</a>
+<br><br>
+  <h3>Check Inventory:</h3>
+    <a id="seller-page-inventory-button" href="{{ url_for('inventory.inventory', sid=current_user.id) }}" type="button" class="btn btn-dark">Inventory</a>
+  <h3>Add to Seller Inventory:</h3>
+    <form>
+      <label for="product_id">Product ID:</label><br>
+      <input type="text" id="product_id" name="product_id"><br>
+      <label for="quantity">Quantity:</label><br>
+      <input type="number" id="quantity" name="quantity"><br><br>
+      <label for="price">Price:</label><br>
+      <input type="number" id="quantity" name="quantity"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    
+  <table class='table table-hover table-bordered container'>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Product ID</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in avail_products%}
+      <tr>
+        <th scope="row">{{product.product_id}}</th>
+        <td>{{product.product_name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+  <h3>Remove Inventory:</h3>
+    <form>
+      <label for="product_id">Product ID:</label><br>
+      <input type="text" id="product_id" name="product_id"><br>
+      <label for="quantity">Quantity:</label><br>
+      <input type="number" id="quantity" name="quantity"><br><br>
+      <label for="price">Price:</label><br>
+      <input type="number" id="quantity" name="quantity"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+    
+  <table class='table table-hover table-bordered container'>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Product ID</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in avail_products%}
+      <tr>
+        <th scope="row">{{product.product_id}}</th>
+        <td>{{product.product_name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+<br><br>
+
+
+</html>

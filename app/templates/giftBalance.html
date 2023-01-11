@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class= "search" action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.userid.label }}<br/>
+    {{ form.userid(size=32) }}<br/>
+    {% for error in form.userid.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.gift.label }}<br/>
+    {{ form.gift(size=32) }}<br/>
+    {% for error in form.gift.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {% if form.neggift == 1%}
+          You cannot gift a negative amount!
+    {% endif %}
+    {% if form.overdrawn == 1%}
+          You cannot give more than your current account balance!
+    {% endif %}
+  </p>
+  <p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </p>
+  {{ form.submit(class_="btn btn-black") }}
+  <br><br>
+
+{% endblock %}

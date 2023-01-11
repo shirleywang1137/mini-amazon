@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Seller Inventory Purchase History</h2>
+<table class='table table-hover table-bordered container'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Order ID</th>
+      <th scope="col">Product ID</th>
+      <th scope="col">Seller ID</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">Order Time</th>
+      <th scope="col">Fulfilled?</th>
+      <th scope="col">Fulfillment Time</th>
+      <th scope="col">Shipped Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for purchase in inventory1%}
+      <tr>
+        <th scope="row">{{purchase.superorder_id}}</th>
+        <td>{{purchase.product_id}}</td>
+        <td>{{purchase.seller_id}}</td>
+        <td>{{purchase.product_name}}</td>
+        <td>{{purchase.quantity}}</td>
+        <td>{{purchase.price}}</td>
+        <td>{{purchase.price*purchase.quantity}}</td>
+        <td>{{purchase.order_time}}</td>
+        <td>{{ purchase.fulfillment }}</td>
+        <td>{% if purchase.fulfillment %} {{ purchase.fulfillment_time}}{% endif %}</td>
+        
+        <td>{{ purchase.address }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<body>
+    <div class="main">
+      <a href="{{ url_for('sellerview.addProducts') }}" type="button" class="btn btn-dark"> Add Products</a>
+      <a href="{{ url_for('sellerview.editProducts') }}" type="button" class="btn btn-dark"> Edit Products</a>
+      <a href="{{ url_for('sellerview.inventory') }}" type="button" class="btn btn-dark"> Overall Inventory</a>
+      <a href="{{ url_for('sellerview.fulfillment') }}" type="button" class="btn btn-dark"> Items in Need of Fulfillment</a>
+      <a href="{{ url_for('sellerview.allOrders') }}" type="button" class="btn btn-dark"> Order History of All Orders</a>
+      <a href="{{ url_for('sellerview.setQuantity') }}" type="button" class="btn btn-dark"> Set Quantity of Item</a>
+      <a href="{{ url_for('sellerview.getProductRatings') }}" type="button" class="btn btn-dark"> My Product Ratings</a>
+        </div>
+    </div>
+  </body>
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Your Wishlist:</h2>
+<table class='table table-hover table-bordered container'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Product Name</th> 
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th> 
+      <th scope="col">Delete</th> 
+      <th scope="col">Add</th> 
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in items %}
+      <tr>
+        <th scope="row">{{product.product_name}}</th>
+        <td>{{product.quantity}}</td>
+        <td>{{product.price}}</td>
+        <td> <a href="{{ url_for('wishlistitem.deleteWishlist', pid=product.product_id)}}" type="button" class="btn btn-light"> Delete From Wishlist</a> </td>
+        <td> <a href="{{ url_for('addcart.addcart', pid=product.product_id) }}" type="button" class="btn btn-light"> Add To Cart </a> </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

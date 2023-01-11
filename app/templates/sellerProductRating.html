@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<body>
+    <div class="main">
+
+      {% if current_user.is_authenticated %}
+
+      <h1 style="color:black; text-align: center;">  </h1>
+      <h1 style="color:black; text-align: center;"> Hello {{current_user.firstname}}! </h1>
+      <h1 style="color:black; text-align: center;"> Your account ID is {{current_user.uid}} </h1>
+      <h1 style="color:black; text-align: center;"> Your full name is: {{current_user.firstname}} {{current_user.lastname}} </h1>
+      <h1 style="color:black; text-align: center;"> Your overall product rating is: 
+        <span class="score"><span style="width: {{rating*20}}%" ></span></span></p>
+      </h1>
+
+      {% endif %}
+
+      
+
+        </div>
+    </div>
+  </body>
+
+{% endblock %}

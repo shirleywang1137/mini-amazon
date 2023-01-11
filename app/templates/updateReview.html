@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class= "search" action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.review.label }}<br/>
+    {{ form.review(size=32) }}<br/>
+    {% for error in form.review.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.rating.label }}<br/>
+    {{ form.rating(size=32) }}<br/>
+    {% for error in form.rating.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {% if form.invalid_review == 1%}
+          Invalid Review! Submit a review rating that is between 1 and 5
+    {% endif %}
+  </p>
+  <p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </p>
+  {{ form.submit(class_="btn btn-black") }}
+  <br><br>
+
+
+
+{% endblock %}

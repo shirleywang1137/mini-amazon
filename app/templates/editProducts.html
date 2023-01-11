@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class= "search" action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.old_product_name.label }}<br/>
+    {{ form.old_product_name(size=32) }}<br/>
+    {% for error in form.old_product_name.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.product_name.label }}<br/>
+    {{ form.product_name(size=32) }}<br/>
+    {% for error in form.product_name.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.category.label }}<br/>
+    {{ form.category(size=32) }}<br/>
+    {% for error in form.category.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.description.label }}<br/>
+    {{ form.description(size=32) }}<br/>
+    {% for error in form.description.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.image.label }}<br/>
+    {{ form.image(size=32) }}<br/>
+    {% for error in form.image.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.price.label }}<br/>
+    {{ form.price(size=32) }}<br/>
+    {% for error in form.price.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.quantity.label }}<br/>
+    {{ form.quantity(size=32) }}<br/>
+    {% for error in form.quantity.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {{ form.available.label }}<br/>
+    {{ form.available(size=32) }}<br/>
+    {% for error in form.available.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </p>
+  {{ form.submit(class_="btn btn-black") }}
+  <br><br>
+
+
+
+{% endblock %}

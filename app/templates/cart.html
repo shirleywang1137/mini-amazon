@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Items in Cart:</h2>
+<table class='table table-hover table-bordered container'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Product Name</th> 
+      <th scope="col">Quantity</th>
+      <th scope="col">Unit Price</th> 
+      <th scope="col">Total Price</th> 
+      <th scope="col">Update Quantity</th> 
+      <th scope="col">Delete</th> 
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in items %}
+      <tr>
+        <th scope="row">{{product.product_name}}</th>
+        <td>{{product.quantity}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.price*product.quantity}}</td>
+        <td><a href="{{ url_for('addcart.updatecart', pid=product.product_id)}}" type="button" class="btn btn-light"> Edit </a></td>
+        <td> <a href="{{ url_for('addcart.deletecart', pid=product.product_id)}}" type="button" class="btn btn-light"> Delete </a> </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+   <h3 style="color: red;">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+   </h3>
+{% endif %}
+{% endwith %}
+
+<h2>Total: {{total}}</h2>
+<h3>Your Balance: {{current_user.balance}}</h3>
+<a href = "{{ url_for('addorder.addorder', total = total) }}" type="button" class="btn btn-dark"> Purchase </a>
+{% endblock %}

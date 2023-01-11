@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<form class= "search" action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.id.label }}<br/>
+      {{ form.id(size=100) }}<br/>
+      {% for error in form.id.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+    </p>
+    {{ form.submit(class_="btn btn-black") }}
+    <br><br>
+
+
+<h2>Product Review History of User {{user_id}}:</h2>
+<table class='table table-hover table-bordered container'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Product ID</th>
+      <th scope="col">Review</th>
+	    <th scope="col">Time</th>
+      <th scope="col">Rating</th>
+      {% if current_user.uid == user_id %}
+      <th scope="col"> </th> 
+      <th scope="col"> </th> 
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for review in avail_reviews%}
+      <tr>
+        <td>{{review.product_id}}</td>
+        <td>{{review.review}}</td>
+		    <td>{{review.review_time}}</td>
+        <td>{{review.rating}}</td> 
+        {% if current_user.uid == user_id %}
+        <td>
+          <a href="{{ url_for('reviewHome.removeReview', is_product_review=1, item_id=review.product_id)}}" type="button" class="btn btn-light"> Delete </a>
+        </td>
+        <td>
+          <a href="{{ url_for('reviewHome.updateReview', is_product_review = 1, item_id=review.product_id)}}" type="button" class="btn btn-light"> Update </a>
+        </td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Seller Review History of User {{user_id}}:</h2>
+<table class='table table-hover table-bordered container'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Seller ID</th>
+      <th scope="col">Review</th>
+	    <th scope="col">Time</th>
+      <th scope="col">Rating</th>
+      {% if current_user.uid == user_id %}
+      <th scope="col"> </th> 
+      <th scope="col"> </th> 
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for review in avail_reviews2%}
+      <tr>
+        <td>{{review.seller_id}}</td>
+        <td>{{review.review}}</td>
+		    <td>{{review.review_time}}</td>
+        <td>{{review.rating}}</td>
+        {% if current_user.uid == user_id %}
+        <td>
+          <a href="{{ url_for('reviewHome.removeReview', is_product_review = 0, item_id = review.seller_id)}}" type="button" class="btn btn-light"> Delete </a>
+        </td>
+        <td>
+           <a href="{{ url_for('reviewHome.updateReview', is_product_review = 0, item_id=review.seller_id)}}" type="button" class="btn btn-light"> Update </a>
+        </td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<br><br>
+
+{% endblock %}

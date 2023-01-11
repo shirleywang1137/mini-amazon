@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Select Quantity</h1>
+
+<form action="" method="post">
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.quantity.label }}<br/>
+    {{ form.quantity(size=32) }}<br/>
+    {% for error in form.quantity.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>{{ form.submit() }}</p>
+</form>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+   <h3 style="color: red;">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+   </h3>
+{% endif %}
+{% endwith %}
+
+{% endblock %}

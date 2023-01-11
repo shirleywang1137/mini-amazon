@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class= "search" action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+  <p>
+    {{ form.set.label }}<br/>
+    {{ form.set(size=32) }}<br/>
+    {% for error in form.set.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+    {% if form.negbal == 1%}
+          You cannot set a negative account balance!
+    {% endif %}
+  </p>
+  <p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </p>
+  {{ form.submit(class_="btn btn-black") }}
+  <br><br>
+
+
+
+{% endblock %}

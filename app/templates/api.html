@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>APIs</h1>
+<a href="{{ url_for('api.users') }}" type="button" class="btn btn-default">Users</a><br><br>
+<a href="{{ url_for('api.products') }}" type="button" class="btn btn-default">Products</a><br><br>
+<a href="{{ url_for('api.carts') }}" type="button" class="btn btn-default">Carts</a><br><br>
+<a href="{{ url_for('api.sellers') }}" type="button" class="btn btn-default">Sellers</a><br><br>
+<a href="{{ url_for('api.social') }}" type="button" class="btn btn-default">Social</a>
+{% endblock %}

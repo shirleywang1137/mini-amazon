@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<body>
+    <div class="main">
+      
+      <h1 style="color:black; text-align: center;">  </h1>
+      <h1 style="color:black; text-align: center;"> User Name: {{uid.firstname}} </h1>
+      <h1 style="color:black; text-align: center;"> Account ID: {{uid.uid}} </h1>
+      <h1 style="color:black; text-align: center;"> Full name: {{uid.firstname}} {{uid.lastname}} </h1>
+      {% if seller == 1%}
+        <h1 style="color:black; text-align: center;"> Confirmed as a Registered Seller</h1>
+        <h1 style="color:black; text-align: center;"> Address: {{uid.address}} </h1>
+        <h1 style="color:black; text-align: center;"> Email: {{uid.email}} </h1>
+        <h1 style="color:black; text-align: center;"> Your overall product rating is: 
+          <span class="score"><span style="width: {{rating*20}}%" ></span></span></p>
+
+        <h2>User Review History of Seller:</h2>
+        <table class='table table-hover table-bordered container'>
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Seller ID</th>
+              <th scope="col">Review</th>
+              <th scope="col">Time</th>
+              <th scope="col">Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for review in avail_reviews2%}
+              <tr>
+                <td>{{review.seller_id}}</td>
+                <td>{{review.review}}</td>
+                <td>{{review.review_time}}</td>
+                <td>{{review.rating}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <br><br>
+      {% endif %}
+      <h2>Product Review History of User {{uid.uid}}:</h2>
+<table class='table table-hover table-bordered container'>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Product ID</th>
+      <th scope="col">Review</th>
+	    <th scope="col">Time</th>
+      <th scope="col">Rating</th>
+      {% if current_user.uid == uid.uid %}
+      <th scope="col"> </th> 
+      <th scope="col"> </th> 
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for review in avail_reviews%}
+      <tr>
+        <td>{{review.product_id}}</td>
+        <td>{{review.review}}</td>
+		    <td>{{review.review_time}}</td>
+        <td>{{review.rating}}</td> 
+        {% if current_user.uid == uid.uid %}
+        <td>
+          <a href="{{ url_for('reviewHome.removeReview', is_product_review=1, item_id=review.product_id)}}" type="button" class="btn btn-light"> Delete </a>
+        </td>
+        <td>
+          <a href="{{ url_for('reviewHome.updateReview', is_product_review = 1, item_id=review.product_id)}}" type="button" class="btn btn-light"> Update </a>
+        </td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </div>
+  </body>
+
+
+
+{% endblock %}
+
+
