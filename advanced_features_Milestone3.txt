@@ -1,0 +1,18 @@
+This file contains the potential advanced features we plan on implementing in our Mini Amazon project for CS 316.
+These advanced features are a rough draft of advanced features and are still in production and are subject to change anytime.
+In the future, there may be more features added as well not on this list.
+
+Team members: Jerry Xin, Shirley Wang, Henry Huynh, Jachin Friday, Chris Cameron
+Team name: Pink Parrots
+
+1. Good, easy to digest website design that is aesthetically pleasing. This includes font, colors, spacing, minimalistic design, etc.
+2. Recommendation of products with most popular reviews on homepage.
+3. Recommendation of products with greatest number of orders on homepage.
+4. Recommendation of products similar to most recently bought product on homepage.
+5. Ability to add promo code when checking out.
+6. Ability to reorder past orders.
+7. Ability to get 10% off first orders for new users.
+8. Ability see purchase analytics for last month.
+9. Ability to click on picture and zoom in.
+10. Ability to link family accounts.
+
