@@ -1,0 +1,118 @@
+Website Layout
+Second draft for Milestone 3
+
+OLD: 
+
+Page 1: Main Page
+The page that users first see when clicking on website link
+Contains search bar, advertisements, user account and shopping cart icons on the top right
+Gives recommendations of items to buy based on current top sales
+
+NEW:
+
+Page 1: Main Page
+The page that users first see when clicking on website link
+Contains search bar, user-specific advertisements, user account and shopping cart icons on the top right.
+Gives recommendations of items to buy based on current trending sales and top reviews
+Also will contain buttons for login and registration.
+Will show a “sign up and get 10% off” pop-up for new users.
+
+CHANGE: Specified more about advertisements and new user promos, as well as what buttons concerning the user account. Also added that products with best reviews will be recommended.
+
+OLD:
+
+Page 2: Search Page
+Displays results of items closest to keywords that user has inputted in search bar
+Descending order of items based on relevance
+
+NEW:
+
+Page 2: Search Page
+Displays results of items closest to keywords that user has inputted in search bar
+Descending order of items based on relevance 
+Will display buttons to access user login and register. Will be able to specify price.
+
+CHANGE: Further specified about Search Page
+
+OLD:
+
+Page 3: Item Page
+Content: item picture, description, “add to cart” button, “number of item” button, seller name and brief info
+Streamlined, simple design so that user can focus on product
+
+NEW:
+
+Page 3: Item Page
+Content: item picture, description, “add to cart” button, “number of item” button, seller name and brief info
+Streamlined, simple design so that users can focus on the product.
+Will display buttons to access user login and register. 
+Add items related to the current item as well.
+
+CHANGE: Further specified about Item Page
+
+
+OLD:
+
+Page 4: Seller Page
+Shows seller name and description, star rating (out of 5), and all products the seller sells
+Compilation of top items from this seller on the top of the page
+
+NEW:
+
+Page 4: Seller Page
+Shows seller name and description, star rating (out of 5), and all products the seller sells
+Compilation of top items from this seller on the top of the page.
+Will display buttons to access user login and register. 
+Will also have seller ratings, sorted by most recent
+
+CHANGE: Further specified about Item Page. Added the sorting of seller reviews by most recent.
+
+
+OLD:
+
+Page 5: Check Out Page
+Presents user’s current shopping cart
+Allow editing and modification of cart items
+Will also have button to continue shopping
+
+NEW:
+
+Page 5: Check Out Page
+Presents user’s current shopping cart
+Allow editing and modification of cart items
+Will also have button to continue shopping
+Will display buttons to access user login and register.
+
+CHANGE: Further specified about Item Page.
+
+
+OLD:
+
+Page 6: Payment & Shipping Page
+User enters in info for payment, promos, and shipping
+Vertival layout for step-by-step ease
+
+NEW:
+
+Page 6: Payment & Shipping Page
+User enters in info for payment, promos, and shipping
+Vertical layout for step-by-step ease
+Will restrict to allow only one promo code
+Will display buttons to access user login and register.
+
+CHANGE: Further specified about Item Page.
+
+NEW PAGE:
+Page 7: User Account Page
+Enables user to change first name, last name, password, address, email, and add/ remove balance. User will not be able to withdraw more balance than they have, and that action will be rejected. User will be able to access the home page but can only edit their own information. Will not allow email change to a duplicate email.
+
+Page Flows:
+1 > 2 > 3 > 4 > 5 > 6
+1 > 2 > 4 > 3 > 5 > 6
+1 > 2 > 3 > 5 > 6
+1 > 3 > 5 > 6
+1 > 3 > 4 > 5 > 6
+1 > 3 > 5 > 3 > 5 > 6
+1 > 7
+
+
