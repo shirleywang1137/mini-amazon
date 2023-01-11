@@ -1,0 +1,62 @@
+This file is the first draft for the Relational Schema for our database design. 
+It will cover all tables, constraints, and necessary assumptions/deviations from standard assumptions.
+
+User(uid, email, full_name, address, password, balance, cart_id)
+
+key: uid
+
+
+
+Sellers(uid, seller)
+
+key: uid
+
+
+
+Products(product_id, seller_id, product_name, category, description, image, price, available)
+
+key: pid
+
+
+
+Carts(cart_id, product_id, quantity)
+
+key:cart_id, product_id
+
+Restriction: Users can only access, add, and remove items from their own cart_id
+
+
+
+past_orders(product_id, seller_id, uid, address, order_time, quantity, fulfillment)
+
+key:uid, order_time, quantity
+
+Restrictions: Non-sellers can only access the previous orders of their own uid, Sellers can access orders that have their uid OR seller_id
+
+
+
+inventory(product_id, quantity)
+
+key: product_id
+
+Restriction: Only accessed and edited by Sellers
+
+
+
+products_reviews(product_id, uid, review)
+
+key:uid, product_id
+
+This is because users can only submit one review for each product. Therefore the user is unique and a key.
+
+Restrictions: User must have bought product, only allow users to submit one review for each product.
+
+
+
+sellers_reviews(seller_id, reviewer_id, review)
+
+key:reviewer_id, seller_id
+
+This is because users can only submit one review for each seller. Therefore the user is unique and a key.
+
+Restriction: User can only place review if they have bought from Seller, can only place one review.

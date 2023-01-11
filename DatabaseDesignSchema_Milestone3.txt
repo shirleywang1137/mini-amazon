@@ -1,0 +1,132 @@
+
+This file is the second draft for the Relational Schema for our database design. 
+This is for Milestone 3.
+It will cover all tables, constraints, and necessary assumptions/deviations from standard assumptions.
+
+OLD: 
+User(uid, email, full_name, address, password, balance, cart_id)
+
+key: uid
+
+NEW:
+
+User(uid, email, full_name, address, password, balance)
+
+key: uid
+
+REASON: art_id was removed because it was redundant. We can also use a user's uid, or user_id, in place of the cart_id.
+
+
+UNCHANGED:
+
+Sellers(uid, seller)
+
+key: uid
+
+
+OLD:
+Products(product_id, seller_id, product_name, category, description, image, price, available, quantity)
+
+key: pid
+
+NEW:
+Products(product_id, seller_id, product_name, category, description, image, price, available, quantity)
+
+key: product_id
+
+REASON: We actually never used pid, rather product_id. Changed key to reflect this. Added quantity to know how many of a product is available
+
+
+OLD:
+
+Carts(cart_id, product_id, quantity)
+
+key:cart_id, product_id
+
+Restriction: Users can only access, add, and remove items from their own cart_id
+
+NEW:
+
+Carts(uid, product_id, quantity)
+
+key: uid, product_id
+
+Restriction: Users can only access, add, and remove items from their own cart_id
+
+REASON: Same logic as before in users table, user id, uid, and cart_id are redundant so we removed cart_id altogether.
+
+
+OLD:
+
+past_orders(product_id, seller_id, uid, address, order_time, quantity, fulfillment)
+
+key:uid, order_time, quantity
+
+Restrictions: Non-sellers can only access the previous orders of their own uid, Sellers can access orders that have their uid OR seller_id
+
+NEW:
+
+orders(order_id, product_id, seller_id, uid, address, order_time, quantity, fulfillment, fulfillment_time, price)
+
+key:order_id
+
+Restrictions: Non-sellers can only access the previous orders of their own uid, Sellers can access orders that have their uid OR seller_id, fulfillment_time must be later than order_time
+
+REASON: Table name was simplified to orders. The status of fulfillment allows us to see if these orders are fulfilled or not. We changed the key to uid, order_time, and address. This should be an adequate key to identify all unique orders. We do not expect the same people to be able to place orders at the same time to the same address. Needed to add new variable price in case price changes between time of purchase and time of order fulfillment. Needed to add new variable fulfillment_time to indicate when an order was fulfilled, not just the time of purchase. order_id added to simplify identifying different orders. This is now our new key.
+
+
+OLD:
+
+inventory(product_id, quantity)
+
+key: product_id
+
+Restriction: Only accessed and edited by Sellers
+
+NEW:
+Removed this table, redundant.
+
+
+OLD:
+products_reviews(product_id, uid, review)
+
+key:uid, product_id
+
+This is because users can only submit one review for each product. Therefore the user is unique and a key.
+
+Restrictions: User must have bought product, only allow users to submit one review for each product.
+
+NEW:
+products_reviews(product_id, uid, review, review_time)
+
+key:uid, product_id
+
+This is because users can only submit one review for each product. Therefore the user is unique and a key.
+
+Restrictions: User must have bought product, only allow users to submit one review for each product.
+
+REASON: The attribute review_time was added so shoppers could sort by the most recent reviews for various products.
+
+
+OLD:
+
+sellers_reviews(seller_id, reviewer_id, review)
+
+key:reviewer_id, seller_id
+
+This is because users can only submit one review for each seller. Therefore the user is unique and a key.
+
+Restriction: User can only place review if they have bought from Seller, can only place one review.
+
+NEW:
+
+sellers_reviews(seller_id, reviewer_id, review, review_time)
+
+key:reviewer_id, seller_id
+
+This is because users can only submit one review for each seller. Therefore the user is unique and a key.
+
+Restriction: User can only place review if they have bought from Seller, can only place one review.
+
+REASON: The attribute review_time was added so shoppers could sort by the most recent reviews for various sellers, similar to the products_reviews table.
+
